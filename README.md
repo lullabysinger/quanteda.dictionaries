@@ -26,13 +26,25 @@ tokens_lookup(toks, dictionary, valuetype="regex")
 ### DISCLAIMER
 Note that the entire regex pattern set is not guaranteed to work.
 For example, the brackets characters {`(`, `)`} are not functional, as
-`liwcahead`'s dependencies remove characters.
+`liwcahead`'s dependencies remove the brackets.
  
 ## Installing
 
 ``` r
 # the devtools package needs to be installed for this to work
 devtools::install_github("lullabysinger/quanteda.dictionaries") 
+```
+
+## Usage
+This is a drop-in replacement for the original `liwcalike` -- nothing has changed
+for `liwcalike`, which forks the original code.
+
+However, the `liwcahead` function is the regex-enabled version. Arguments
+remain the same as the original kbenoit `liwcalike`, with one small difference.
+
+If the LIWC-style dic file consists of wildcards, use the following:
+``` r
+output_lsd <- liwcahead(corpus, dictionary, regex = TRUE)
 ```
 
 ## Demonstration - as adapted from the original `kbenoit/quanteda.dictionaries`
