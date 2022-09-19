@@ -171,11 +171,4 @@ liwcahead <- function(x, dictionary = NULL, tolower = TRUE, verbose = TRUE, rege
   result
 }
 
-setwd("~/Rtemp")
-require(quanteda)
-require(quanteda.dictionaries)
-require(quanteda.corpora)
 
-dic2 <- dictionary(file = "regex.dic")
-LIWCanalysis <- liwcahead(data_corpus_sotu, dic2, regex=TRUE, verbose=TRUE)
-tail(LIWCanalysis,50)
