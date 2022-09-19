@@ -1,27 +1,41 @@
 quanteda.dictionaries
 ================
 
-[![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/quanteda.dictionaries)](https://cran.r-project.org/package=quanteda.dictionaries)
-[![Travis-CI Build
-Status](https://travis-ci.org/kbenoit/quanteda.dictionaries.svg?branch=master)](https://travis-ci.org/kbenoit/quanteda.dictionaries)
-[![AppVeyor Build
-status](https://ci.appveyor.com/api/projects/status/3uvg00bo4p7mr98s/branch/master?svg=true)](https://ci.appveyor.com/project/kbenoit/quanteda-dictionaries/branch/master)
-[![Coverage
-Status](https://img.shields.io/codecov/c/github/kbenoit/quanteda.dictionaries/master.svg)](https://codecov.io/github/kbenoit/quanteda.dictionaries?branch=master)
+> This is a fork of the original **quanteda.dictionaries** maintained by kbenoit.
+> Please go to [https://github.com/kbenoit/quanteda.dictionaries](https://github.com/kbenoit/quanteda.dictionaries) 
+> for the original package.
 
 An R package consisting of dictionaries for text analysis and associated
 utilities. Designed to be used with [**quanteda**](http://quanteda.io)
 but can be used more generally with any text analytic package (e.g.
 **tidytext**, **tm**, etc.).
 
+## Experimental Regex support
+This fork enables regular regex-based patterns in `liwcalike` by implementing
+a complementary function, codenamed `liwcahead`, which allows the following
+regex patterns to be used:
+* `.`, e.g. `.ome` for {`some, home, ...`}
+* `*`, e.g. `fil.*` for {`fil, file, filing, filet, ...`}
+* `?`, e.g. `s.?lice` for {`splice, slice, ...`}
+
+It accomplishes this by using the optional arg `regex` in `tokens_lookup`: 
+``` r
+tokens_lookup(toks, dictionary, valuetype="regex")
+```
+
+### DISCLAIMER
+Note that the entire regex pattern set is not guaranteed to work.
+For example, the brackets characters {`(`, `)`} are not functional, as
+`liwcahead`'s dependencies remove characters.
+ 
 ## Installing
 
 ``` r
 # the devtools package needs to be installed for this to work
-devtools::install_github("kbenoit/quanteda.dictionaries") 
+devtools::install_github("lullabysinger/quanteda.dictionaries") 
 ```
 
-## Demonstration
+## Demonstration - as adapted from the original `kbenoit/quanteda.dictionaries`
 
 With the `liwcalike()` function from the **quanteda.dictionaries**
 package, you can easily analyze text corpora using exising or custom
@@ -62,8 +76,11 @@ head(output_lsd)
     ## 5   4.24  6.19  0.69  0.23  0.11   0.00 1.95  2.18    1.72       0  13.65
     ## 6   4.65  3.98  0.13  0.00  0.00   0.00 0.53  0.93    0.40       0   9.69
 
+
 ## Code of Conduct
 
 Please note that this project is released with a [Contributor Code of
-Conduct](CONDUCT.md). By participating in this project you agree to
-abide by its terms.
+Conduct](CONDUCT.md), which we adhere to, based on the original 
+from `kbenoit/quanteda.dictionaries`.
+
+By participating in this project you agree to abide by its terms.
